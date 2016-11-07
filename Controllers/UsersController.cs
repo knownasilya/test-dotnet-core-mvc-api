@@ -14,7 +14,8 @@ namespace TestApi.Controllers {
       db = context;
       logger = lgr;
     }
-
+    
+    // GET: /api/users
     [HttpGet]
     public async Task<Object> GetAll() {
       logger.LogInformation("Fetching all users");
@@ -23,7 +24,7 @@ namespace TestApi.Controllers {
       return new { users };
     }
 
-    // GET: api/users/ or /api/users/123
+    // GET: /api/users/123
     [HttpGet("{id:int}")]
     public async Task<Object> GetById(int id = 0) {
       var user = await db.Users.SingleAsync(u => u.id == id);
