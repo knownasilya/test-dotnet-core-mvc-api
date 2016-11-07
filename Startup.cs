@@ -14,8 +14,10 @@ namespace TestApi {
     }
 
     public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
-      var context = app.ApplicationServices.GetService<ApiContext>();
-      AddTestData(context); 
+      loggerFactory.AddConsole(LogLevel.Debug);
+
+      var api = app.ApplicationServices.GetService<ApiContext>();
+      AddTestData(api); 
 
       app.UseMvc(routes => {
         routes.MapRoute(
@@ -25,7 +27,7 @@ namespace TestApi {
       });
     }
 
-    private static void AddTestData(ApiContext context) {
+    private static void AddTestData(ApiContext api) {
       var testUser1 = new User {
         id = 1,
         firstName = "Luke",
@@ -37,9 +39,9 @@ namespace TestApi {
         lastName = "Solo"
       };
  
-      context.Users.Add(testUser1);
-      context.Users.Add(testUser2);
-      context.SaveChanges();
+      api.Users.Add(testUser1);
+      api.Users.Add(testUser2);
+      api.SaveChanges();
     }
   }
 }
