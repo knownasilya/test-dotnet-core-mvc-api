@@ -27,11 +27,18 @@ namespace TestApi {
 
     private static void AddTestData(ApiContext context) {
       var testUser1 = new User {
-        id = 123,
-        name = "Luke"
+        id = 1,
+        firstName = "Luke",
+        lastName = "Skywalker"
+      };
+      var testUser2 = new User {
+        id = 2,
+        firstName = "Han",
+        lastName = "Solo"
       };
  
       context.Users.Add(testUser1);
+      context.Users.Add(testUser2);
       context.SaveChanges();
     }
   }
